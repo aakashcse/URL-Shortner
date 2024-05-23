@@ -4,16 +4,14 @@ const ShortUrl = require("./models/shortUrl");
 const shortId = require("shortid");
 const app = express();
 
-const connect = async () => {
-  try {
-    await mongoose.connect(
-      "mongodb+srv://richie:richie@cluster0.rphiz.mongodb.net/urlShortner"
-    );
-    console.log("MongoDB database connected");
-  } catch (err) {
-    console.log("MongoDB connection failed ", err);
-  }
-};
+mongoose.connect('mongodb://localhost/urlShortener', {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
+}).then(() => {
+    console.log("Connected to MongoDB");
+}).catch((error) => {
+    console.error("MongoDB connection error:", error);
+});
 
 
 
